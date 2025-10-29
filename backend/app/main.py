@@ -70,3 +70,10 @@ async def wallet_deposit(amount: float, current_user: str = Depends(get_current_
     user = USERS.get(current_user)
     user["balance"] += float(amount)
     return {"status": "ok", "balance": user["balance"]}
+import uvicorn
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
+
